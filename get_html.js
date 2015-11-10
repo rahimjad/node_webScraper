@@ -20,17 +20,13 @@ function doStufftoBody(body){
 
   body('tr').each(function(i, row){
     var tds = body(row).children('td');
-    var size = body(tds.get(1)).text();
-
-    if (size.length > 0) {
-      var file = body(tds.get(2)).text();
-      var fileType = file.split('.')[1];
-      if(fileType){
-        var permissions = body(tds).first().text();
-        var fileUrl = "http://substack.net/" + body(tds.get(2)).children('a').attr('href');
-        var rowArr = [permissions, fileUrl, fileType];
-        arrayCSV.push(rowArr);   
-      }
+    var file = body(tds.get(2)).text();
+    var fileType = file.split('.')[1];
+    if(fileType){
+      var permissions = body(tds).first().text();
+      var fileUrl = "http://substack.net/" + body(tds.get(2)).children('a').attr('href');
+      var rowArr = [permissions, fileUrl, fileType];
+      arrayCSV.push(rowArr);   
     }
   });
   return arrayCSV
